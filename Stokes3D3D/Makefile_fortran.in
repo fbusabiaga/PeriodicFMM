@@ -1,0 +1,73 @@
+# change this to match your system
+SFTPATH=/mnt/home/fbalboausabiaga/sfw
+EIGEN=$(SFTPATH)/eigen/3.3.4
+CXX= mpiicpc -Wa,-q
+FC= mpiifort
+LINK = $(CXX)
+
+include $(PVFMM_DIR)/MakeVariables
+
+CXXFLAGS= $(CXXFLAGS_PVFMM) -DFMMTIMING
+FCFLAGS=-O2
+LINKFLAGS= $(CXXFLAGS_PVFMM) $(LDLIBS_PVFMM)
+
+# set of libraries to correctly link to the target
+USERLIB =  
+USERINCLUDE = -I$(EIGEN) -I./
+
+INCLUDE_DIRS = $(USERINCLUDE)
+LIBRARY_DIRS =  
+LIBRARIES = $(USERLIB)
+
+# System-specific settings
+SHELL = /bin/bash
+SYSLIB =	
+SIZE =	size
+
+# Files
+
+SRC =   main.cpp ChebNodal.cpp FMMWrapper.cpp 
+SRC_FORTRAN = FMMCWrapper.f90
+INC =   ChebNodal.h FMMWrapper.h Ewald.hpp
+         
+# Definitions
+# Files to compile
+TARGET = test
+EXE =    StokesTest3D3D.X
+OBJ =    $(SRC:.cpp=.o) 
+OBJ_FC = $(SRC_FORTRAN:.f90=.o)
+
+
+
+$(info $$OBJ is [${OBJ}])
+$(info $$OBJ_FC is [${OBJ_FC}])
+
+all: $(TARGET).exe
+
+# Link rule
+$(EXE):	$(OBJ)
+	$(LINK) $(OBJ)  -o $(EXE) $(LINKFLAGS) $(SYSLIB) $(LIBRARY_DIRS) $(LIBRARIES)
+	$(SIZE) $(EXE)
+
+# Compilation rules
+.cpp.o:
+	$(CXX) $(CXXFLAGS) $(INCLUDE_DIRS) -c $*.cpp -o $*.o
+
+# Individual dependencies
+$(OBJ): $(INC)
+
+# Compile fortran
+FMMCWrapper.o: FMMCWrapper.f90
+	$(FC) -c $<
+
+# Compile target
+$(TARGET).exe: $(OBJ_FC) $(TARGET).f90 ; 
+	$(FC) $(FCFLAGS) $(OBJ_FC) test.f90 -o $(TARGET).exe 
+
+
+all: $(EXE)
+
+clean: 
+	rm ./$(OBJ)
+	rm ./$(EXE)
+  
