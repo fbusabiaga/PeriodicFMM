@@ -7,7 +7,7 @@
 
 #include <cassert>
 
-#include "FMMWrapper.h"
+#include "FMMWrapper.hpp"
 #include "omp.h"
 #include <chrono> // for timing
 
@@ -819,3 +819,10 @@ void FMM_Wrapper::calcM(const pvfmm::Vector<double> &trg_coord, std::vector<doub
 #endif
 
 }
+
+
+void FMM_Wrapper::FMM_Hello(){
+  std::cout << "KKKKKK" << std::endl;
+}
+
+

@@ -15,6 +15,8 @@
 
 #include "Eigen/Dense"
 
+
+
 class FMM_Wrapper {
 public:
     enum PAXIS {
@@ -50,6 +52,8 @@ public:
             const std::vector<double> *surf_valPtr = NULL);
 
     void FMM_SetBox(double, double, double, double, double, double);
+
+    void FMM_Hello();
 
 private:
     double *readM2LMat(const char *, const int);

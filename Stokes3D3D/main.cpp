@@ -6,7 +6,7 @@
  */
 
 #include "ChebNodal.h"
-#include "FMMWrapper.h"
+#include "FMMWrapper.hpp"
 #include "mpi.h"
 
 #include "../common/cmdparser.hpp"
