@@ -77,9 +77,9 @@ program test
   if(ierr .gt. 0) print*, "MPI_FINALIZE error = ", ierr
 
   ! Free memory
-  deallocate(src_coord)
-  deallocate(trg_coord)
-
+  deallocate(src_coord, trg_coord)
+  deallocate(src_value, trg_value)
+  
   print*, "# End"
 
 end program test
