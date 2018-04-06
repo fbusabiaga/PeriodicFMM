@@ -9,7 +9,6 @@ FMM_WRAPPER* create_fmm_wrapper(int mult_order, int max_pts, int init_depth, FMM
     return new FMM_Wrapper(mult_order, max_pts, init_depth, pbc);
 }
 
-//void delete_fmm_wrapper(FMM_WRAPPER* fmm_wrapper);
 void delete_fmm_wrapper(FMM_WRAPPER* fmm_wrapper){
     delete fmm_wrapper;
 }

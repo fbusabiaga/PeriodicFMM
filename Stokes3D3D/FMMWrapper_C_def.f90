@@ -16,15 +16,6 @@ interface
         type(c_ptr), value :: fmm_wrapper
 	end subroutine delete_fmm_wrapper_c
 
-    ! function foo_bar_c(foo, c) bind(C, name="foo_bar")
-    !     use iso_c_binding
-    !     implicit none
-    !     integer(c_int) :: foo_bar_c
-    !     ! The const qualification is translated into an intent(in)
-    !     type(c_ptr), intent(in), value :: foo
-    !     integer(c_int), value :: c
-    ! end function
-
     subroutine fmm_wrapper_FMM_SetBox_c(fmm, xlow, xhigh, ylow, yhigh, zlow, zhigh) bind (C, name="FMM_WRAPPER_FMM_SetBox")
         use iso_c_binding
 		implicit none

@@ -1,13 +1,9 @@
 #include "FMMWrapper.hpp"
 
 extern "C" {
-  /* enum PAXIS { */
-  /* 	NONE, PXYZ, PX, PY, PZ, PXY, PXZ, PYZ */
-  /* }; */
 
   class FMM_Wrapper;
   typedef FMM_Wrapper FMM_WRAPPER;
-  // typedef FMM_Wrapper::PAXIS PAXIS;
 
   FMM_WRAPPER* create_fmm_wrapper(int mult_order = 8, int max_pts = 1024, int init_depth = 0, FMM_Wrapper::PAXIS pbc = FMM_Wrapper::PAXIS::NONE);
 

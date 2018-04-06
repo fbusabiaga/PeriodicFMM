@@ -71,7 +71,6 @@ module libfmmwrapper
         integer(c_int), intent(in) :: init_depth
         integer(c_int), intent(in) :: pbc
         create_fmm_wrapper%ptr = create_fmm_wrapper_c(mult_order, max_pts, init_depth, pbc)
-		write(*,*) "FROM FMMWrapper_mod.f90 ===== create_fmm_wrapper"
 	end function create_fmm_wrapper
 
 	! -------------------------------------------------------------------
