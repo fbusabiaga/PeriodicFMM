@@ -203,7 +203,7 @@ void FMM_Wrapper::FMM_SetBox(double xlow_, double xhigh_, double ylow_, double y
     scaleFactor = 1 / std::max(zlen, std::max(xlen, ylen));
 // new coordinate = (x+xshift)*scaleFactor, in (0,1)
 
-    std::cout << "box x" << xlen << "box y" << ylen << "box z" << zlen << std::endl;
+    std::cout << "box x " << xlen << ";  box y " << ylen << "; box z  " << zlen << std::endl;
     std::cout << "scale factor" << scaleFactor << std::endl;
 
 // validate box setting, ensure fitting in a cubic box [0,1]^3
@@ -821,8 +821,5 @@ void FMM_Wrapper::calcM(const pvfmm::Vector<double> &trg_coord, std::vector<doub
 }
 
 
-void FMM_Wrapper::FMM_Hello(){
-  std::cout << "KKKKKK" << std::endl;
-}
 
 
