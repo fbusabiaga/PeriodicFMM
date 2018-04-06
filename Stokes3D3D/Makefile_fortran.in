@@ -8,8 +8,13 @@ LINK = $(CXX)
 include $(PVFMM_DIR)/MakeVariables
 
 CXXFLAGS= $(CXXFLAGS_PVFMM) -DFMMTIMING
-FCFLAGS=-O2
+FCFLAGS= $(CXXFLAGS_PVFMM) $(LDLIBS_PVFMM)
 LINKFLAGS= $(CXXFLAGS_PVFMM) $(LDLIBS_PVFMM)
+LINKFLAGS_FC=
+
+LDLIBS  := ${LDFLAGS_PVFMM}
+LDLIBS  += 
+
 
 # set of libraries to correctly link to the target
 USERLIB =  
@@ -26,9 +31,9 @@ SIZE =	size
 
 # Files
 
-SRC =   main.cpp ChebNodal.cpp FMMWrapper.cpp 
-SRC_FORTRAN = FMMCWrapper.f90
-INC =   ChebNodal.h FMMWrapper.h Ewald.hpp
+SRC = main.cpp ChebNodal.cpp FMMWrapper.cpp FMMWrapper_C_api.cpp 
+SRC_FORTRAN = FMMWrapper_mod.f90 
+INC = ChebNodal.h FMMWrapper.hpp Ewald.hpp FMMWrapper.h
          
 # Definitions
 # Files to compile
@@ -57,17 +62,20 @@ $(EXE):	$(OBJ)
 $(OBJ): $(INC)
 
 # Compile fortran
-FMMCWrapper.o: FMMCWrapper.f90
+FMMWrapper_mod.o: FMMWrapper_mod.f90 FMMWrapper_C_def.f90
 	$(FC) -c $<
 
 # Compile target
-$(TARGET).exe: $(OBJ_FC) $(TARGET).f90 ; 
-	$(FC) $(FCFLAGS) $(OBJ_FC) test.f90 -o $(TARGET).exe 
+$(TARGET).exe: $(OBJ) $(OBJ_FC) $(TARGET).f90 ; 
+	$(FC) $(FCFLAGS) ChebNodal.o FMMWrapper.o FMMWrapper_C_api.o $(OBJ_FC) test.f90 -o $(TARGET).exe $(LINKFLAGS_FC) $(LDLIBS)
 
 
 all: $(EXE)
 
 clean: 
 	rm ./$(OBJ)
+	rm ./$(OBJ_FC)
+	rm ./$(TARGET).exe
 	rm ./$(EXE)
   
+
