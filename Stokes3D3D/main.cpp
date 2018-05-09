@@ -7,7 +7,8 @@
 
 #include "ChebNodal.h"
 #include "FMMWrapper.hpp"
-#include "mpi.h"
+// #include "mpi.h"
+#include "Ewald.hpp"
 
 #include "../common/cmdparser.hpp"
 
@@ -16,9 +17,9 @@
 #include <random>
 #include <vector>
 
-#include "Eigen/Dense"
+#include <Eigen/Dense>
+#include <mpi.h>
 
-#include "Ewald.hpp"
 
 void distributePts(std::vector<double> &pts) {
     int myRank;
