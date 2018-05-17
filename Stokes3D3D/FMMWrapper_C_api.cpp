@@ -1,5 +1,5 @@
+#include "FMMWrapperC.h"
 #include "FMMWrapper.h"
-#include "FMMWrapper.hpp"
 
 #include <iostream>
 using namespace std;

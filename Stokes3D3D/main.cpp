@@ -6,7 +6,7 @@
  */
 
 #include "ChebNodal.h"
-#include "FMMWrapper.hpp"
+#include "FMMWrapper.h"
 // #include "mpi.h"
 #include "Ewald.hpp"
 

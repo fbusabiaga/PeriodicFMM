@@ -5,7 +5,7 @@
  *      Author: wyan
  */
 
-#include "FMMWrapper.hpp"
+#include "FMMWrapper.h"
 
 #include <cassert>
 #include <limits>
