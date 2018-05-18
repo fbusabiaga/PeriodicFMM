@@ -31,7 +31,7 @@ program test
   ylow = 0
   yhigh = 1
   zlow = 0
-  zhigh = 1
+  zhigh = 0.25
   num_src = 10
   num_trg = 10
 
@@ -43,6 +43,14 @@ program test
   call random_number(src_coord)
   call random_number(trg_coord)
   call random_number(src_value)
+  
+  ! zhigh should be smaller than xhigh and yhigh
+  do i=1, num_src
+     src_coord(i*3) = src_coord(i*3) * 0.25
+  end do
+  do i=1, num_trg
+     trg_coord(i*3) = trg_coord(i*3) * 0.25
+  end do
 
   ! Init MPI
   call MPI_INIT(mpi_rank,mpi_size)     
