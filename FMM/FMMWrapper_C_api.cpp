@@ -1,12 +1,21 @@
 #include "FMMWrapperC.h"
+#ifdef NO_WALL
 #include "FMMWrapper.h"
+#else
+#include "FMMWrapperWall2D.h"
+#endif
 
 #include <iostream>
 using namespace std;
 
 
-FMM_WRAPPER* create_fmm_wrapper(int mult_order, int max_pts, int init_depth, FMM_Wrapper::PAXIS pbc){
-    return new FMM_Wrapper(mult_order, max_pts, init_depth, pbc);
+FMM_WRAPPER* create_fmm_wrapper(int mult_order, int max_pts, int init_depth, FMM_WRAPPER::PAXIS pbc){
+// #ifdef NO_WALL
+//   return new FMM_Wrapper(mult_order, max_pts, init_depth, pbc);
+// #else
+//   return new FMM_WrapperWall2D(mult_order, max_pts, init_depth, pbc);
+// #endif
+return new FMM_WRAPPER(mult_order, max_pts, init_depth, pbc);
 }
 
 void delete_fmm_wrapper(FMM_WRAPPER* fmm_wrapper){
