@@ -10,16 +10,11 @@ using namespace std;
 
 
 FMM_WRAPPER* create_fmm_wrapper(int mult_order, int max_pts, int init_depth, FMM_WRAPPER::PAXIS pbc){
-// #ifdef NO_WALL
-//   return new FMM_Wrapper(mult_order, max_pts, init_depth, pbc);
-// #else
-//   return new FMM_WrapperWall2D(mult_order, max_pts, init_depth, pbc);
-// #endif
-return new FMM_WRAPPER(mult_order, max_pts, init_depth, pbc);
+  return new FMM_WRAPPER(mult_order, max_pts, init_depth, pbc);
 }
 
 void delete_fmm_wrapper(FMM_WRAPPER* fmm_wrapper){
-    delete fmm_wrapper;
+  delete fmm_wrapper;
 }
     
 void FMM_WRAPPER_FMM_SetBox(FMM_WRAPPER* fmm, double xlow, double xhigh, double ylow, double yhigh, double zlow, double zhigh){
