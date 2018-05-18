@@ -16,11 +16,14 @@ USERLIB_DIRS = -L$(SFTPATH)/lib
 USERLIBS = -ltrng4
 
 CXX= mpiicpc
+FC=mpiifort
 LINK= $(CXX)
 
 # optimized
 CXXFLAGS= $(CXXFLAGS_PVFMM) 
+FCFLAGS= $(CXXFLAGS_PVFMM) $(LDLIBS_PVFMM)
 LINKFLAGS= $(CXXFLAGS) $(LDLIBS_PVFMM) $(Trilinos_EXTRA_LD_FLAGS) #-lm -ldl
+LDLIBS = ${LDFLAGS_PVFMM}
 
 # remove some flags for debugging
 # if Trilinos and pvfmm are compiled with ipo, removing this may cause linking failures
