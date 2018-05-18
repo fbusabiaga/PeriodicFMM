@@ -1,4 +1,6 @@
 ! C functions declaration
+! Author: Florencio Balboa Usabiaga
+
 interface
     function create_fmm_wrapper_c(mult_order, max_pts, init_depth, pbc) bind(C, name="create_fmm_wrapper")
         use iso_c_binding

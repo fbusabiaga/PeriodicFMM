@@ -1,5 +1,7 @@
 ! -----------------------------------------------------------
 ! Wrapper to call Periodic FMM.
+!
+! Author: Florencio Balboa Usabiaga
 ! 
 ! Reference:
 ! Flexibly imposing periodicity in kernel independent FMM: A multipole-to-local operator approach,
